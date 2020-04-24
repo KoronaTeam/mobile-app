@@ -16,7 +16,7 @@
       ]
      },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     "typeRoots": [
-      "types"
+      "@types"
     ],                       /* List of folders to include type definitions from. */
     "types": [
       "node"
@@ -25,12 +25,11 @@
     "esModuleInterop": true,                   /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
-
     "skipLibCheck": true
   },
   "include": [
     "app",
-    "types"
+    "@types"
   ],
   "exclude": [
     "node_modules",
