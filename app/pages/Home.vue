@@ -1,14 +1,14 @@
 <template>
   <Page>
-    <ActionBar title="Welcome to NativeScript-Vue!"/>
+    <ActionBar title="Welcome to NativeScript-Vue!" />
     <StackLayout backgroundColor="#3c495e">
-      <Label @tap="navigateTo('/example1')"
+      <Label backgroundColor="#43b883"
              text="Example1"
-             backgroundColor="#43b883"/>
+             @tap="navigateTo('/example1')" />
       <Label text="Example2"
-             backgroundColor="#289062"/>
+             backgroundColor="#289062" />
       <Label text="Example3"
-             backgroundColor="#1c6b48"/>
+             backgroundColor="#1c6b48" />
     </StackLayout>
   </Page>
 </template>

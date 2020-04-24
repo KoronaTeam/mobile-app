@@ -1,13 +1,13 @@
 <template>
   <Page>
-    <ActionBar title="Welcome to NativeScript-Vue!"/>
+    <ActionBar title="Welcome to NativeScript-Vue!" />
     <DockLayout stretchLastChild="false"
                 backgroundColor="#3c495e">
       <Label :text="userGreet"
-             @tap="onClick"
              dock="bottom"
              height="40"
-             backgroundColor="#289062"/>
+             backgroundColor="#289062"
+             @tap="onClick" />
     </DockLayout>
   </Page>
 </template>
@@ -18,7 +18,7 @@
 
   @Component
   export default class Example1 extends Vue {
-    private userName: string = 'Jacek';
+    private userName = 'Jacek';
 
     private names: string[] = [
       'Jacek',
