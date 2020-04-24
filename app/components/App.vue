@@ -1,18 +1,39 @@
 <template>
   <Page>
     <ActionBar title="Welcome to NativeScript-Vue!"/>
-    <GridLayout columns="*" rows="*">
-      <Label class="message" text="testtesttest" col="0" row="0"/>
-    </GridLayout>
+    <DockLayout stretchLastChild="false"
+                backgroundColor="#3c495e">
+      <Label :text="userGreet"
+             @tap="onClick"
+             dock="bottom"
+             height="40"
+             backgroundColor="#289062"/>
+    </DockLayout>
   </Page>
 </template>
 
 <script lang="ts">
-  import { Vue, Component } from 'vue-property-decorator'
+  import { Vue, Component } from 'vue-property-decorator';
 
   @Component
   export default class Home extends Vue {
+    private userName: string = 'Jacek';
 
+    private names: string[] = [
+      'Jacek',
+      'Julian',
+      'Radek',
+      'Mateusz',
+    ];
+
+    get userGreet() {
+      return `Witaj użytkowniku ${this.userName}`;
+    }
+
+    onClick() {
+      const index = Math.floor(Math.random() * 4);
+      this.userName = this.names[index];
+    }
   }
 </script>
 
