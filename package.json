@@ -27,6 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@types/node": "^13.11.1",
     "babel-loader": "^8.1.0",
     "nativescript-dev-webpack": "^1.5.1",
     "nativescript-vue-template-compiler": "^2.6.0",
@@ -34,8 +35,9 @@
     "node-sass": "^4.13.1",
     "tns-platform-declarations": "^6.5.1",
     "typescript": "^3.8.3",
-    "@types/node": "^13.11.1",
     "vue": "^2.6.11",
-    "vue-loader": "^15.9.1"
+    "vue-class-component": "^7.2.3",
+    "vue-loader": "^15.9.1",
+    "vue-property-decorator": "^8.4.1"
   }
 }
