@@ -18,11 +18,11 @@
 
 ## Użyte technologie 🔧
 
-| Tech                                                    | Opis                              |
-| ------------------------------------------------------- | ---------------------------------------- |
-| [X](X)                           | XYZ   |
-| [X](X)                           | XYZ   |
-| [X](X)                           | XYZ   |
+| Tech                                          | Opis                                                                                   |
+| --------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [NativeScript](https://www.nativescript.org/) | JavaScriptowy framework umożliwiający pisanie natywnych aplikacji na platformy mobilne |
+| [Vue.js](https://vuejs.org/)                  | Framework frontendowy używany przez aplikację                                          |
+| [TypeScript](https://www.typescriptlang.org/) | Typowany superset dla JavaScript                                                       |
 
 
 ## Screenshots 📺
@@ -41,6 +41,10 @@
 
 ## Instalacja 💾
 
+```bash
+npm install
+```
+
 ## Dostępne skrypty
 
 | Komenda                   | Opis                   |
@@ -52,4 +56,4 @@
 ## Znane problemy 🔍
 \-
 
-## License 🔱
+## Licencja 🔱
