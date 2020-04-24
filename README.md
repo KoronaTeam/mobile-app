@@ -41,17 +41,27 @@
 
 ## Instalacja 💾
 
+Przygotowanie systemu operacyjnego:<br>
+* [Windows](https://docs.nativescript.org/start/ns-setup-win) (for developing Android applications on Windows)
+* [macOS](https://nativescript-vue.org/en/docs/getting-started/installation/#macos) (for developing iOS and Android applications on macOS)
+* [Linux](https://nativescript-vue.org/en/docs/getting-started/installation/#linux) (for developing Android applications on Linux)
+
+<br>
+Wymagane Node.js w wersji LTS
+
 ```bash
+npm install -g nativescript
 npm install
 ```
 
-## Dostępne skrypty
+## Dostępne komendy
 
-| Komenda                   | Opis                   |
-| ------------------------- | ----------------------------- |
-| `npm run start`           | Open local server             |
-| `npm run build`           | Create optimized build        |
-| `npm run test`            | Run tests                     |
+| Komenda                                 | Opis                     |
+| --------------------------------------- | ------------------------ |
+| `tns preview`                           | Podgląd na urządzeniu    |
+| `tns run`                               | Uruchom na urządzeniu    |
+| `tns debug <platform>`                  | Debuguj na urządzeniu    |
+| `tns build <platform> --env.production` | Buduj paczkę produkcyjną |
 
 ## Znane problemy 🔍
 \-
