@@ -1,14 +1,15 @@
 <template>
   <Page>
     <ActionBar title="Welcome to NativeScript-Vue!"/>
-    <DockLayout stretchLastChild="false"
-                backgroundColor="#3c495e">
-      <Label :text="userGreet"
-             @tap="onClick"
-             dock="bottom"
-             height="40"
+    <StackLayout backgroundColor="#3c495e">
+      <Label @tap="navigateTo('/example1')"
+             text="Example1"
+             backgroundColor="#43b883"/>
+      <Label text="Example2"
              backgroundColor="#289062"/>
-    </DockLayout>
+      <Label text="Example3"
+             backgroundColor="#1c6b48"/>
+    </StackLayout>
   </Page>
 </template>
 
@@ -18,22 +19,8 @@
 
   @Component
   export default class Home extends Vue {
-    private userName: string = 'Jacek';
-
-    private names: string[] = [
-      'Jacek',
-      'Julian',
-      'Radek',
-      'Mateusz',
-    ];
-
-    get userGreet() {
-      return `Witaj użytkowniku ${this.userName}`;
-    }
-
-    onClick() {
-      const index = Math.floor(Math.random() * 4);
-      this.userName = this.names[index];
+    navigateTo(route: string) {
+      this.$navigator.navigate(route, { transition: { name: 'slide' } });
     }
   }
 </script>
@@ -41,13 +28,15 @@
 <style lang="scss" scoped>
   ActionBar {
     background-color: #53ba82;
-    color: #ffffff;
+    color: #fff;
   }
 
-  .message {
-    vertical-align: center;
+  Label {
+    height: 70;
     text-align: center;
-    font-size: 20px;
-    color: #333333;
+    color: #fff;
+
+    padding: 20;
+    font-size: 20;
   }
 </style>
