@@ -1,5 +1,5 @@
 <template>
-  <Navigator :defaultRoute="'/home'"/>
+  <Navigator :defaultRoute="'/login'"/>
 </template>
 
 <script lang="ts">
