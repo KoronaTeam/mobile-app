@@ -23,7 +23,11 @@
         return;
       }
 
-      camera.takePicture()
+      const options = {
+        cameraFacing: 'front',
+      } as any;
+
+      camera.takePicture(options)
         .then((imageAsset) => {
           alert('Mamy fotę!');
           const image = new Image();
