@@ -12,7 +12,7 @@
 
 </h1>
 
-<h4 align="center">mobile-app</h4>
+<h4 align="center">S.A.M.</h4>
 
 ## Project Overview 🎉
 

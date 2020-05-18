@@ -47,7 +47,7 @@
     }
 
     private onButtonTap() {
-      this.navigateTo('/takephoto');
+      this.navigateTo('/noaction');
     }
   }
 </script>
