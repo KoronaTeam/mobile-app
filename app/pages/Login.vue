@@ -25,6 +25,12 @@
 <script lang="ts">
   import 'reflect-metadata';
   import { Vue, Component } from 'vue-property-decorator';
+  import * as geolocation from 'nativescript-geolocation';
+  import { Accuracy } from 'tns-core-modules/ui/enums'; // used to describe at what accuracy the location should be get
+  import {
+    setNumber,
+    setString,
+  } from 'tns-core-modules/application-settings';
 
   @Component
   export default class Login extends Vue {
@@ -46,7 +52,36 @@
       this.pin = value;
     }
 
-    private onButtonTap() {
+    private async onButtonTap() {
+      try {
+        await geolocation.enableLocationRequest();
+      } catch {
+        alert('Zazwól na dostęp do GPS!');
+        return;
+      }
+      const loc = await geolocation.getCurrentLocation({
+        desiredAccuracy: Accuracy.high,
+        maximumAge: 5000,
+        timeout: 20000,
+      });
+
+      // TODO: podać prawdziwy adres backendu
+      fetch('https://postman-echo.com/post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: this.phone,
+          location: {
+            latitude: loc.latitude,
+            longitude: loc.longitude
+          },
+        }),
+      });
+
+      setString('phone', this.phone);
+      setNumber('location.latitude', loc.latitude);
+      setNumber('location.longitude', loc.longitude);
+
       this.navigateTo('/noaction');
     }
   }
