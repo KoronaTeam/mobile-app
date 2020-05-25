@@ -2,7 +2,7 @@
   <Page actionBarHidden="true">
     <StackLayout>
       <Button text="Zrób zdjęcie"
-              @tap="onButtonTap" />
+              @tap="onButtonTap"/>
     </StackLayout>
   </Page>
 </template>
@@ -11,31 +11,75 @@
   import 'reflect-metadata';
   import { Vue, Component } from 'vue-property-decorator';
   import * as camera from 'nativescript-camera';
-  import { Image } from 'tns-core-modules/ui/image';
+  import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
+  import { ImageSource } from 'tns-core-modules/image-source';
+  import GeoLoc from '@/services/GeoLoc';
+  import { LocationInterface } from '@/@types/location.interface';
+  import { API } from '@/consts';
 
   @Component
   export default class TakePhoto extends Vue {
     private async onButtonTap() {
+      if (!await this.gainPermissions()) return;
+      const base64 = await this.takePhoto();
+
+      if (!base64) return;
+
+      if (!await GeoLoc.getPermissions()) return;
+      const loc = await GeoLoc.getLocation();
+
+      await this.saveData(base64, loc);
+
+      // TODO: przekierować użytkownika na NoAction.vue
+    }
+
+    private async gainPermissions() {
       try {
         await this.requestPermissions();
+        return true;
       } catch {
         alert('Zazwól na dostęp do aparatu!');
-        return;
+        return false;
       }
+    }
 
+    private async takePhoto() {
       const options = {
         cameraFacing: 'front',
       } as any;
 
-      camera.takePicture(options)
-        .then((imageAsset) => {
-          alert('Mamy fotę!');
-          const image = new Image();
-          image.src = imageAsset;
-        })
-        .catch((err) => {
-          alert('Błąd!');
+      try {
+        const imageAsset = await camera.takePicture(options);
+        return await this.getBase64From(imageAsset);
+      } catch (err) {
+        alert('Błąd!');
+        return false;
+      }
+    }
+
+    private async saveData(base64: string, loc: LocationInterface) {
+      try {
+        await fetch(`${API}/post`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            photo: base64,
+            location: {
+              latitude: loc.latitude,
+              longitude: loc.longitude,
+            },
+          }),
         });
+
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    private async getBase64From(imageAsset: ImageAsset) {
+      const imageSource = await ImageSource.fromAsset(imageAsset)
+      return imageSource.toBase64String('jpg');
     }
 
     private requestPermissions() {

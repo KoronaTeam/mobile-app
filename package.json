@@ -4,6 +4,9 @@
   "description": "A native application built with NativeScript-Vue",
   "author": "Radosław Kłos <radoslaw@klos.dev> & Julian Filip",
   "license": "MIT",
+  "scripts": {
+    "start": "tns run"
+  },
   "nativescript": {
     "id": "org.koronateam.app",
     "templateVersion": "v2",

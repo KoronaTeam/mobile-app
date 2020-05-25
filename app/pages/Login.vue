@@ -16,7 +16,7 @@
                    secure
                    @textChange="onPinChange" />
         <Button text="Rozpocznij kwarantannę"
-                @tap="onButtonTap" />
+                @tap="startProcess" />
       </StackLayout>
     </StackLayout>
   </Page>
@@ -25,12 +25,13 @@
 <script lang="ts">
   import 'reflect-metadata';
   import { Vue, Component } from 'vue-property-decorator';
-  import * as geolocation from 'nativescript-geolocation';
-  import { Accuracy } from 'tns-core-modules/ui/enums'; // used to describe at what accuracy the location should be get
   import {
     setNumber,
     setString,
   } from 'tns-core-modules/application-settings';
+  import { LocationInterface } from '@/@types/location.interface';
+  import GeoLoc from '@/services/GeoLoc';
+  import { API } from '@/consts';
 
   @Component
   export default class Login extends Vue {
@@ -52,28 +53,24 @@
       this.pin = value;
     }
 
-    private async onButtonTap() {
-      try {
-        await geolocation.enableLocationRequest();
-      } catch {
-        alert('Zazwól na dostęp do GPS!');
-        return;
-      }
-      const loc = await geolocation.getCurrentLocation({
-        desiredAccuracy: Accuracy.high,
-        maximumAge: 5000,
-        timeout: 20000,
-      });
+    private async startProcess() {
+      if (!await GeoLoc.getPermissions()) return;
 
-      // TODO: podać prawdziwy adres backendu
-      fetch('https://postman-echo.com/post', {
+      const loc = await GeoLoc.getLocation();
+      this.saveData(loc);
+
+      this.navigateTo('/noaction');
+    }
+
+    private saveData(loc: LocationInterface) {
+      fetch(`${API}/post`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           phone: this.phone,
           location: {
             latitude: loc.latitude,
-            longitude: loc.longitude
+            longitude: loc.longitude,
           },
         }),
       });
@@ -81,8 +78,6 @@
       setString('phone', this.phone);
       setNumber('location.latitude', loc.latitude);
       setNumber('location.longitude', loc.longitude);
-
-      this.navigateTo('/noaction');
     }
   }
 </script>

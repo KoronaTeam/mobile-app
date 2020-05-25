@@ -1,6 +1,7 @@
 <template>
   <Page actionBarHidden="true">
     <StackLayout>
+      <Label @tap="navigateTo('/takephoto')">TakePhoto.vue</Label>
       <Label class="title">Wielki Brat czuwa!</Label>
       <Label class="subtitle"
              textWrap>Nie stresuj się tak i nie zaglądaj tu dopóki Cię nie poprosimy</Label>
@@ -32,6 +33,10 @@
   export default class NoAction extends Vue {
     get timestamp() {
       return Date.now();
+    }
+
+    private navigateTo(route: string) {
+      this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
     }
   }
 </script>
