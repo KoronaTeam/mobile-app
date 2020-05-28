@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@nativescript/theme": "^2.2.1",
+    "@teammaestro/nativescript-svg": "^1.0.1",
     "@vue/devtools": "^5.3.3",
     "nativescript-camera": "^4.5.0",
     "nativescript-geolocation": "^5.1.0",

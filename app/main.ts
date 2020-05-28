@@ -15,6 +15,8 @@ import App from './App.vue';
 // Prints Vue logs when --env.production is *NOT* set while building
 Vue.config.silent = (TNS_ENV === 'production');
 
+Vue.registerElement('SVGImage', () => require('@teammaestro/nativescript-svg').SVGImage);
+
 if (TNS_ENV !== 'production') {
   Vue.use(VueDevtools);
 }
