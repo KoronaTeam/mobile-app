@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "295202318543",
+    "firebase_url": "https://testowyprojekt-e04ed.firebaseio.com",
+    "project_id": "testowyprojekt-e04ed",
+    "storage_bucket": "testowyprojekt-e04ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295202318543:android:4c0208282c52ced77defba",
+        "android_client_info": {
+          "package_name": "org.koronateam.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295202318543-ldjj5r0jg0ouk69og0hls9knlf7ga1kq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKq9Zj9SDXS2cnzXQva3A2u7wulwX3GnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295202318543-ldjj5r0jg0ouk69og0hls9knlf7ga1kq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

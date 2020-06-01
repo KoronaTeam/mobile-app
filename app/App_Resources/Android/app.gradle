@@ -9,6 +9,8 @@
 // e.g. project.ext.googlePlayServicesVersion = "15.0.1"
 // create a file named before-plugins.gradle in the current directory and place it there
 
+// Niekompatybilność fireabase z geolocation: https://github.com/NativeScript/nativescript-geolocation/issues/259#issuecomment-621236249
+
 android {
   defaultConfig {
     minSdkVersion 17
@@ -16,5 +18,12 @@ android {
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"
+  }
+  project.ext {
+         googlePlayServicesVersion = "15.0.1"
+  }
+  dependencies {
+     def googlePlayServicesVersion = project.googlePlayServicesVersion
+     compile "com.google.android.gms:play-services-location:$googlePlayServicesVersion"
   }
 }

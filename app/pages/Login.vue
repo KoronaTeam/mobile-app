@@ -1,5 +1,6 @@
 <template>
-  <Page actionBarHidden="true">
+  <Page actionBarHidden="true"
+        @loaded="loaded">
     <StackLayout>
       <Image src="~/assets/images/korona-logo.png"
              stretch="none" />
@@ -28,6 +29,7 @@
   import {
     setNumber,
     setString,
+    getString,
   } from 'tns-core-modules/application-settings';
   import { LocationInterface } from '@/@types/location.interface';
   import GeoLoc from '@/services/GeoLoc';
@@ -39,6 +41,31 @@
 
     private phone = '';
     private pin = '';
+    private pushToken = '';
+
+    private tokenCheckCount = 0;
+
+    loaded() {
+      this.waitForPushToken();
+    }
+
+    private waitForPushToken() {
+      if (this.tokenCheckCount > 10) {
+        alert('Nie udało się zarejestrować w Firebase!');
+        return;
+      }
+
+      setTimeout(() => {
+        const token = getString('pushToken');
+        this.tokenCheckCount++;
+
+        if (token) {
+          this.pushToken = token;
+        } else {
+          this.waitForPushToken();
+        }
+      }, 500);
+    }
 
     private navigateTo(route: string) {
       this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
@@ -68,6 +95,8 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           phone: this.phone,
+          password: this.pin,
+          pushToken: this.pushToken,
           location: {
             latitude: loc.latitude,
             longitude: loc.longitude,
@@ -76,6 +105,7 @@
       });
 
       setString('phone', this.phone);
+      setString('pin', this.pin);
       setNumber('location.latitude', loc.latitude);
       setNumber('location.longitude', loc.longitude);
     }

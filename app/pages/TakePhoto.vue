@@ -16,9 +16,14 @@
   import GeoLoc from '@/services/GeoLoc';
   import { LocationInterface } from '@/@types/location.interface';
   import { API } from '@/consts';
+  import { remove, getString } from 'tns-core-modules/application-settings';
 
   @Component
   export default class TakePhoto extends Vue {
+    private navigateTo(route: string) {
+      this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
+    }
+
     private async onButtonTap() {
       if (!await this.gainPermissions()) return;
       const base64 = await this.takePhoto();
@@ -28,9 +33,11 @@
       if (!await GeoLoc.getPermissions()) return;
       const loc = await GeoLoc.getLocation();
 
-      await this.saveData(base64, loc);
+      if (await this.saveData(base64, loc)) {
+        remove('pendingRequestToken');
 
-      // TODO: przekierować użytkownika na NoAction.vue
+        this.navigateTo('/noaction');
+      }
     }
 
     private async gainPermissions() {
@@ -59,11 +66,13 @@
 
     private async saveData(base64: string, loc: LocationInterface) {
       try {
+        const token = getString('pendingRequestToken');
         await fetch(`${API}/post`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             photo: base64,
+            token: token,
             location: {
               latitude: loc.latitude,
               longitude: loc.longitude,
