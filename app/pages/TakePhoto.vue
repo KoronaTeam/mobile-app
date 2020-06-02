@@ -6,12 +6,13 @@
       <AbsoluteLayout dock="top"
                       height="100"
                       ref="absolute">
-        <SVGImage src="~/assets/images/photo-camera.svg"
-                  class="big-camera"
-                  width="350"
-                  height="350"
-                  top="-25"
-                  left="50"/>
+        <Image src="~/assets/images/korona-logo.png"
+               stretch="aspectFit"
+               class="big-camera"
+               width="500"
+               height="500"
+               top="-90"
+               left="-25"/>
       </AbsoluteLayout>
       <StackLayout dock="bottom"
                    ref="stack">
