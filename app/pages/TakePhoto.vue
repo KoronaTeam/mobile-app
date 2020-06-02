@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import 'reflect-metadata';
-  import { Vue, Component } from 'vue-property-decorator';
+  import { Mixins, Component } from 'vue-property-decorator';
   import * as camera from 'nativescript-camera';
   import { ImageAsset } from 'tns-core-modules/image-asset/image-asset';
   import { ImageSource } from 'tns-core-modules/image-source';
@@ -17,13 +17,10 @@
   import { LocationInterface } from '@/@types/location.interface';
   import { API } from '@/consts';
   import { remove, getString } from 'tns-core-modules/application-settings';
+  import NavigatorMixin from '@/pages/Mixins/NavigatorMixin';
 
   @Component
-  export default class TakePhoto extends Vue {
-    private navigateTo(route: string) {
-      this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
-    }
-
+  export default class TakePhoto extends Mixins(NavigatorMixin) {
     private async onButtonTap() {
       if (!await this.gainPermissions()) return;
       const base64 = await this.takePhoto();

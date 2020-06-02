@@ -25,7 +25,7 @@
 
 <script lang="ts">
   import 'reflect-metadata';
-  import { Vue, Component } from 'vue-property-decorator';
+  import { Component, Mixins } from 'vue-property-decorator';
   import {
     setNumber,
     setString,
@@ -34,9 +34,10 @@
   import { LocationInterface } from '@/@types/location.interface';
   import GeoLoc from '@/services/GeoLoc';
   import { API } from '@/consts';
+  import NavigatorMixin from '@/pages/Mixins/NavigatorMixin';
 
   @Component
-  export default class Login extends Vue {
+  export default class Login extends Mixins(NavigatorMixin) {
     // TODO: <a href="https://www.freepik.com/free-photos-vectors/logo">Logo vector created by freepik - www.freepik.com</a>
 
     private phone = '';
@@ -65,10 +66,6 @@
           this.waitForPushToken();
         }
       }, 500);
-    }
-
-    private navigateTo(route: string) {
-      this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
     }
 
     private onPhoneChange({ value }: any) {

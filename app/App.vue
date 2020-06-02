@@ -1,29 +1,22 @@
 <template>
   <Page @loaded="loaded">
-    <Navigator :defaultRoute="defaultRoute"
-               v-if="ready" />
+    <Navigator :defaultRoute="defaultRoute" />
   </Page>
-
 </template>
 
 <script lang="ts">
   import 'reflect-metadata';
-  import { Vue, Component } from 'vue-property-decorator';
+  import { Component, Mixins } from 'vue-property-decorator';
   import { hasKey, setString } from 'tns-core-modules/application-settings';
   import * as firebase from 'nativescript-plugin-firebase';
+  import NavigatorMixin from '@/pages/Mixins/NavigatorMixin';
 
   @Component
-  export default class App extends Vue {
-    private ready = false;
-
+  export default class App extends Mixins(NavigatorMixin) {
     private get defaultRoute() {
       return hasKey('phone')
         ? (hasKey('pendingRequestToken') ? '/takephoto' : '/noaction')
         : '/login';
-    }
-
-    private navigateTo(route: string) {
-      this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
     }
 
     private async loaded() {
@@ -44,8 +37,6 @@
           this.navigateTo('/takephoto');
         },
       });
-
-      this.ready = true;
     }
   }
 </script>
