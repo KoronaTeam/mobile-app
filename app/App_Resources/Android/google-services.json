@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "295202318543",
-    "firebase_url": "https://testowyprojekt-e04ed.firebaseio.com",
-    "project_id": "testowyprojekt-e04ed",
-    "storage_bucket": "testowyprojekt-e04ed.appspot.com"
+    "project_number": "798168245021",
+    "firebase_url": "https://corona-b624a.firebaseio.com",
+    "project_id": "corona-b624a",
+    "storage_bucket": "corona-b624a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:295202318543:android:4c0208282c52ced77defba",
+        "mobilesdk_app_id": "1:798168245021:android:12e45d896a9526d22737f4",
         "android_client_info": {
-          "package_name": "org.koronateam.app"
+          "package_name": "com.dreamteam.corona"
         }
       },
       "oauth_client": [
         {
-          "client_id": "295202318543-ldjj5r0jg0ouk69og0hls9knlf7ga1kq.apps.googleusercontent.com",
+          "client_id": "798168245021-vrqj8aurqee2uqca3u4hcubk2dqi3sc3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCKq9Zj9SDXS2cnzXQva3A2u7wulwX3GnQ"
+          "current_key": "AIzaSyDxLG_wRSUCQKgwuPapF8xW6tOw700Wagw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "295202318543-ldjj5r0jg0ouk69og0hls9knlf7ga1kq.apps.googleusercontent.com",
+              "client_id": "798168245021-vrqj8aurqee2uqca3u4hcubk2dqi3sc3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -87,7 +87,7 @@
     }
 
     private saveData(loc: LocationInterface) {
-      fetch(`${API}/post`, {
+      fetch(`${API}/quarantines/start`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

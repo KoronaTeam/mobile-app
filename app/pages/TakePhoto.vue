@@ -64,7 +64,7 @@
     private async saveData(base64: string, loc: LocationInterface) {
       try {
         const token = getString('pendingRequestToken');
-        await fetch(`${API}/post`, {
+        await fetch(`${API}/tickets`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -76,6 +76,7 @@
             },
           }),
         });
+
 
         return true;
       } catch (err) {

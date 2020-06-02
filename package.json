@@ -8,7 +8,7 @@
     "start": "tns run"
   },
   "nativescript": {
-    "id": "org.koronateam.app",
+    "id": "com.dreamteam.corona",
     "templateVersion": "v2",
     "tns-android": {
       "version": "6.5.0"
