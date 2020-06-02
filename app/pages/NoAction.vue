@@ -8,7 +8,8 @@
                    ref="stack">
         <Image src="~/assets/images/korona-logo.png"
                stretch="none"
-               class="logo" />
+               class="logo"
+               @tap="navigateTo('/takephoto')"/>
         <Waves ref="waves" />
       </StackLayout>
       <StackLayout class="content"
@@ -34,6 +35,10 @@
     },
   })
   export default class NoAction extends Vue {
+    protected navigateTo(route: string) {
+      this.$navigator.navigate(route, { transition: { name: 'slide' }, clearHistory: true });
+    }
+
     private loaded(args: any) {
       // HACK: nowy android przycina elementy do rodzica
       // source: https://github.com/nativescript-vue/nativescript-vue/issues/434
